@@ -5,7 +5,7 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) { 
-setlocale(LC_ALL,"Russian");
+
 float x,y,z,s,a,b,q,e;
 //x = - 4.5;
 //y = 0.75e-4;
