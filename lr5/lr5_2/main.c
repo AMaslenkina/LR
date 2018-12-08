@@ -1,51 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int main( void ) {
-
-int i, j, val,m[2][3];
-int min_h[2], max_w[3];
-
-for(i=0; i<2; i++)
-	for(j=0; j<3; j++){
-		
-		printf("\nVvedite element [%d,%d]  ", i+1, j+1);
-		scanf("%d", &m[i][j]);
-		
-	}
-
-for ( i= 0; i<2; i++ ) {
-val= m[i][0];
-for ( j= 0; j<3; j++ ) {
-if ( m[i][j]<val ) 
- val= m[i][j];
-  
+#include <time.h>
+#define N 10
+#define M 12
+int main(void)
+{
+  int matr[N][M];
+  int minr,maxc,i,j,y,x,f=0;
+  srand(time(NULL));
+  for(i=0;i<N;i++)
+  	for(j=0;j<M;j++)
+  		matr[i][j]=rand() %(200-(-200))+(-200);
+  for(i=0;i<N;i++)
+  {
+      printf("\n");
+      for(j=0;j<M;j++)
+      printf("%d ",matr[i][j]);
+  }
+  printf("\n");
+  for (i=0;i<N;i++) 
+  {
+     minr=matr[i][0];
+     for (x=1;x<M;x++)
+     {
+        if ( matr[i][x]<minr )
+        {
+           minr=matr[i][x]; 
+        }
+     }
+     for( j=0;j<M;j++)
+     {
+         if ( matr[i][j]==minr)
+         {  
+            maxc=matr[0][j];
+            for (y=1;y<N;y++) 
+            {
+                if ( matr[y][j]>maxc ) 
+                { 
+                    maxc= matr[y][j];
+                }
+            }
+                   if (matr[i][j]==maxc)
+                   { 
+                      printf( "matr[%d][%d]=%d\n", i, j, matr[i][j] ); 
+                      f=1;
+                   }
+         }
+     }
+  }
+if(!f)printf("Matrica ne imeet sedl. tochek!\n"); 
+return (0);
 }
-min_h[i]= val;
-}
-
-for ( j= 0; j<3; j++ ) {
-val= m[0][j];
-for ( i= 1; i<2; i++ ) {
-if ( m[i][j]>val ) 
- val= m[i][j];
- 
-}
-max_w[j]= val;
-}
-
-for ( i= 1; i<2; i++ ) {
-	for ( j= 1; j<3; j++ ) {
-		if ( m[i][j] == max_w[j] && m[i][j] == min_h[i] ) 
-printf( "\nIndeks sedlovoy tochki [%d][%d]\n", i, j );
-
-}
-}
-getch();
-
-return 0;
 
 
-}
+
